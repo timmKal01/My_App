@@ -8,7 +8,7 @@ const SafeAreaView = styled(RNSafeAreaView);
 
 const SignIn = () => {
   return (
-    <SafeAreaView className='flex-1 bg-background p-5'>
+    <SafeAreaView className="flex-1 bg-background p-5">
       <Text>Sign In</Text>
       <Link href="/(Auth)/sign-up">Create Account</Link>
     </SafeAreaView>

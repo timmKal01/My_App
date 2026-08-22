@@ -1,22 +1,20 @@
 import { Tabs } from 'expo-router';
 import { tabs } from '@/constants/data';
 import { icons } from '@/constants/icons';
-import { View } from 'react-native';
-import { Image } from 'react-native';
+import { View , Image } from 'react-native';
 import clsx from 'clsx';
 import type { TabIconProps } from '@/type.d';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors, components } from '@/constants/theme';
 
-
-const tabBar=components.tabBar;
+const tabBar = components.tabBar;
 const TabLayout = () => {
-  const insets=useSafeAreaInsets();
+  const insets = useSafeAreaInsets();
   const TabIcon = ({ focused, icon }: TabIconProps) => {
     return (
       <View className="tabs-icon">
         <View className={clsx('tabs-pill', focused && 'tabs-active')}>
-          <Image source={icon} resizeMode='contain' className="tabs-glyph" />
+          <Image source={icon} resizeMode="contain" className="tabs-glyph" />
         </View>
       </View>
     );
@@ -25,7 +23,7 @@ const TabLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel:false,
+        tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
           bottom: Math.max(insets.bottom, tabBar.horizontalInset),
@@ -37,14 +35,19 @@ const TabLayout = () => {
           elevation: 0,
         },
         tabBarItemStyle: {
-          paddingVertical: tabBar.height/3-tabBar.iconFrame/3
+          paddingVertical: tabBar.height / 3 - tabBar.iconFrame / 3,
         },
         tabBarIconStyle: {
           width: tabBar.iconFrame,
           height: tabBar.iconFrame,
           alignItems: 'center',
-        }
-    }}>
+        },
+        sceneStyle: {
+          paddingBottom:
+            tabBar.height + Math.max(insets.bottom, tabBar.horizontalInset),
+        },
+      }}
+    >
       {tabs.map((tab) => (
         <Tabs.Screen
           key={tab.name}
