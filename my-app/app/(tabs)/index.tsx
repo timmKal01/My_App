@@ -1,14 +1,19 @@
 import "@/global.css"
 import { Link } from 'expo-router';
 import { Text, View } from "react-native";
-import {SafeAreaView as RNSafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView as RNSafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {styled} from "nativewind";
+import { components } from '@/constants/theme';
 
 const SafeAreaView = styled(RNSafeAreaView);
 
 export default function App() {
+  const insets = useSafeAreaInsets();
+  const tabBar = components.tabBar;
+  const bottomPadding = tabBar.height + Math.max(insets.bottom, tabBar.horizontalInset);
+
   return (
-    <SafeAreaView className='flex-1 bg-background p-5'>
+    <SafeAreaView className='flex-1 bg-background p-5' style={{ paddingBottom: bottomPadding }}>
       <Text className="text-xl font-bold text-success">
         Welcome to Tech Timmy Hub!
       </Text>
