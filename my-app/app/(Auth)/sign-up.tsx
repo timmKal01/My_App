@@ -6,10 +6,9 @@ import { styled } from 'nativewind';
 
 const SafeAreaView = styled(RNSafeAreaView);
 
-
 const SignUp = () => {
   return (
-    <SafeAreaView className='flex-1 bg-background p-5'>
+    <SafeAreaView className="flex-1 bg-background p-5">
       <Text>Sign UP</Text>
       <Link href="/(Auth)/sign-in">Log into Account</Link>
     </SafeAreaView>

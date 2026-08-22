@@ -1,46 +1,42 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Link, useLocalSearchParams } from 'expo-router'
+import { View, Text } from 'react-native';
+import React from 'react';
+import { Link, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 import { styled } from 'nativewind';
 
 const SafeAreaView = styled(RNSafeAreaView);
 
-const subscriptions = {
+const subscriptions: Record<string, { name: string; description: string }> = {
   spotify: {
-    name: 'Spotify Premium',
-    price: '$10.99/month',
-    description: 'Music streaming service with millions of songs and podcasts.',
+    name: 'Spotify',
+    description: 'Music streaming subscription',
   },
   claude: {
-    name: 'Claude Pro',
-    price: '$20/month',
-    description: 'AI assistant subscription with advanced capabilities.',
+    name: 'Claude Max',
+    description: 'AI assistant subscription',
   },
 };
 
 const SubscriptionDetails = () => {
-  const {id}= useLocalSearchParams<{id: string}>();
-  const subscription = subscriptions[id as keyof typeof subscriptions];
-
-  if (!subscription) {
-    return (
-      <SafeAreaView className='flex-1 bg-background p-5'>
-        <Text className="text-xl font-bold mb-4">Subscription Not Found</Text>
-        <Text className="mb-4">The subscription ID &quot;{id}&quot; is not recognized.</Text>
-        <Link href="/public">Go Back</Link>
-      </SafeAreaView>
-    );
-  }
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const subscription = id ? subscriptions[id] : undefined;
 
   return (
-    <SafeAreaView className='flex-1 bg-background p-5'>
-      <Text className="text-2xl font-bold mb-4">{subscription.name}</Text>
-      <Text className="text-lg font-semibold mb-2">{subscription.price}</Text>
-      <Text className="mb-4">{subscription.description}</Text>
-      <Link href="/public">Go Back</Link>
+    <SafeAreaView className="flex-1 bg-background p-5">
+      {subscription ? (
+        <>
+          <Text className="text-2xl font-bold mb-2">{subscription.name}</Text>
+          <Text className="text-lg mb-4">{subscription.description}</Text>
+          <Text className="text-sm text-gray-600">ID: {id}</Text>
+        </>
+      ) : (
+        <Text className="text-xl text-destructive">Subscription not found</Text>
+      )}
+      <Link href="/public" className="mt-4 text-primary">
+        Go Back
+      </Link>
     </SafeAreaView>
   );
 };
 
-export default SubscriptionDetails
+export default SubscriptionDetails;
