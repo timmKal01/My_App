@@ -1,5 +1,7 @@
 import type { ImageSourcePropType } from 'react-native';
 
+declare module '*.css';
+
 declare global {
   interface AppTab {
     name: string;
