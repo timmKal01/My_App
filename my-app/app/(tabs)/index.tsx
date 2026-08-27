@@ -100,7 +100,7 @@ export default function App() {
         ItemSeparatorComponent={() => <View className="h-4" />}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
-          <Text className="home-empty-state">No upcoming subscriptions yet.</Text>
+          <Text className="home-empty-state">No upcoming renewals yet.</Text>
         }
 
       />
