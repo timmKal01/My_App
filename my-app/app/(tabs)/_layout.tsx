@@ -4,7 +4,6 @@ import { icons } from '@/constants/icons';
 import { View } from 'react-native';
 import { Image } from 'react-native';
 import clsx from 'clsx';
-import type { TabIconProps } from '@/type.d';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import { colors, components } from '@/constants/theme';
 
@@ -52,7 +51,7 @@ const TabLayout = () => {
           options={{
             title: tab.title,
             tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} icon={icons[tab.icon]} />
+              <TabIcon focused={focused} icon={tab.icon} />
             ),
           }}
         />
